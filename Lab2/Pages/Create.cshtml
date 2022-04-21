@@ -1,0 +1,53 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script src="~/js/selectAll.js"></script>
+
+<link rel="stylesheet" href="~/css/create.css" />
+
+<div style="background: @ViewData["Col"]; border-radius: 5px; display: @ViewData["ShowVal"];">
+    <ul style="padding-bottom: 10px; padding-top:10px;">
+        @Html.Raw(System.Web.HttpUtility.HtmlDecode(ViewData["SuccessMsg"]?.ToString()))
+        @Html.Raw(System.Web.HttpUtility.HtmlDecode(ViewData["NameVal"]?.ToString()))
+        @Html.Raw(System.Web.HttpUtility.HtmlDecode(@ViewData["TacticVal"]?.ToString()))
+        @Html.Raw(System.Web.HttpUtility.HtmlDecode(@ViewData["DescrVal"]?.ToString()))
+    </ul>
+</div>
+
+<div>
+    <form method="post">
+            
+
+        <fieldset>
+            <legend>Pattern Name</legend>
+            <input type="text" name="pName" />
+        </fieldset>
+        
+        <fieldset>
+            <legend>Tactics Used</legend>
+
+            <p>
+                <label><input type="checkbox" id="checkAll" onclick="toggle(this)"/> Select / Unselect All</label><br/>
+                <br/>
+
+                @{
+                    foreach (var tactic in JSONTypes.TacticNames)
+                    {
+                        <label><input type="checkbox" class="chk" value="@tactic.Key.ToString()" name="@tactic.Key.ToString()" /> @tactic.Value.Value</label><br />
+                        }
+                    }
+            </p>
+        </fieldset>
+       
+        <fieldset>
+            <legend>Description</legend>
+            <textarea rows="4" cols="50" name="description"></textarea>
+        </fieldset>
+        
+
+        <input type="submit" asp-page-handler="Create" value="Create Pattern">
+    </form>
+</div>

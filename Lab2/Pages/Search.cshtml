@@ -1,0 +1,44 @@
+﻿@page
+@model SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<script src="~/js/selectAll.js"></script>
+
+<link rel="stylesheet" href="~/css/create.css" />
+
+<div>
+    <form method="post">
+
+
+        <fieldset>
+            <legend>Pattern Name</legend>
+            <input type="text" name="pName" />
+        </fieldset>
+
+        <fieldset>
+            <legend>Tactics Used</legend>
+
+            <p>
+                <label><input type="checkbox" id="checkAll" onclick="toggle(this)" /> Select / Unselect All</label><br />
+                <br />
+
+                @{
+                    foreach (var tactic in JSONTypes.TacticNames)
+                    {
+                        <label><input type="checkbox" class="chk" value="@tactic.Key.ToString()" name="@tactic.Key.ToString()" /> @tactic.Value.Value</label><br />
+                    }
+                }
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Description</legend>
+            <textarea rows="4" cols="50" name="description"></textarea>
+        </fieldset>
+
+
+        <input type="submit" asp-page-handler="Search" value="Search">
+    </form>
+</div>

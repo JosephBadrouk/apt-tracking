@@ -1,0 +1,6 @@
+This was done as a lab for my User Interfaces course.
+Instructions and explanations on what the website does is attached in the PDF file titled "SEG3125_Lab2_W19.pdf".
+Please note that it is mentionned in the instructions that the website is only focused on UI and the website doesn't have to be functional,
+but I went the extra mile and made the website fully functional. Adding, deleting, and tracking tactics fully works.
+
+This site was built on .NET Core using C# and Razor.

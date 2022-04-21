@@ -1,0 +1,26 @@
+﻿@page
+@model MyTrackedModel
+@{
+}
+
+    <div class="text-center">
+        <h1 class="display-4">My Tracked APTs</h1>
+    </div>
+
+<hr/>
+
+        <div class="w3-container">
+            <table class="w3-table-all">
+                <tr>
+                    <th>Tracked Tactic</th>
+                </tr>
+                @{
+                    foreach (var tactic in Track.TrackedTactics)
+                    {
+                        <tr>
+                            <td><a style="color: #0366d6; "href="/Technique?name=@tactic">@tactic</a></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>

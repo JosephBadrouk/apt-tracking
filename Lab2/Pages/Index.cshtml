@@ -1,0 +1,72 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Attack Matrix</h1>
+    <form method="post">
+    <table class="w3-table">
+        <thead>
+            <tr>
+                @{
+                    foreach (var tactic in JSONTypes.TacticNames.Values)
+                    {
+                        <td style="padding: 5px; text-align:center; border: 1px solid black; font-size:12px; background-color: darkgray; color: black;">@tactic.Value</td>
+                    }
+                }
+            </tr>
+            @{
+                var t = JSONTypes.PatternsUsed.Values.Max(x => x.Count);
+                var j = JSONTypes.TacticNames.Values.Count;
+                for (var i = 0; i < t; i++)
+                {
+                        <tr>
+                            @{
+                                for(var x = 0; x<j; x++)
+                                {
+                                    try
+                                    {
+                                        if (i >= JSONTypes.PatternsUsed.ElementAt(x).Value.Count)
+                                        {
+                                            <td></td>
+                                            continue;
+                                        }
+
+                        <td style="font-size:10px; border:1px solid gray; background-color: white; text-align: center;">
+
+                            <a href="/Technique?name=@JSONTypes.PatternsUsed.ElementAt(x).Value.ElementAt(i)&tactic=@JSONTypes.PatternsUsed.ElementAt(x).Key" style="color: #0366d6">
+                                @JSONTypes.PatternsUsed.ElementAt(x).Value.ElementAt(i)
+                            </a>
+                        </td>
+                                    }
+                                    catch(Exception _)
+                                    {
+                                       
+                                    }
+                                }
+
+                                /*try
+                                {
+                                    for (var y = 0; y < j; y++)
+                                    {
+                                        var patternName = JSONTypes.TacticNames.Values.ElementAt(y).Key;
+                                        var name = JSONTypes.PatternTactics.Where(x => x.Value.Contains(patternName)).ElementAt(i).Key;
+                                        <td>@name</td>
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+                                    <td>no</td>
+                                }*/
+                                }
+                        </tr>
+                }
+
+            }
+            </thead>
+
+        </table>
+        </form>
+</div>
